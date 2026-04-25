@@ -1,0 +1,90 @@
+---INFORME DE CONFIGURACION DE RED---
+~~~~Adaptador: Ethernet~~~~
+
+Estado: [Inactivo]
+Velocidad: 0Mb
+MAC: B0-0C-D1-29-2F-79
+ IP IPv4: 169.254.93.69
+ Mascara: 255.255.0.0
+Broadcast: None
+-----------------------------------------
+
+~~~~Adaptador: Ethernet 2~~~~
+
+Estado: [Activo]
+Velocidad: 1000Mb
+MAC: 0A-00-27-00-00-06
+ IP IPv4: 169.254.209.82
+ Mascara: 255.255.0.0
+Broadcast: None
+-----------------------------------------
+
+~~~~Adaptador: Conexión de área local* 1~~~~
+
+Estado: [Inactivo]
+Velocidad: 0Mb
+MAC: A0-A4-C5-56-B0-D1
+ IP IPv4: 169.254.48.175
+ Mascara: 255.255.0.0
+Broadcast: None
+-----------------------------------------
+
+~~~~Adaptador: Conexión de área local* 10~~~~
+
+Estado: [Inactivo]
+Velocidad: 0Mb
+MAC: A2-A4-C5-56-B0-D0
+ IP IPv4: 169.254.89.200
+ Mascara: 255.255.0.0
+Broadcast: None
+-----------------------------------------
+
+~~~~Adaptador: VMware Network Adapter VMnet1~~~~
+
+Estado: [Activo]
+Velocidad: 100Mb
+MAC: 00-50-56-C0-00-01
+ IP IPv4: 192.168.199.1
+ Mascara: 255.255.255.0
+Broadcast: None
+-----------------------------------------
+
+~~~~Adaptador: VMware Network Adapter VMnet8~~~~
+
+Estado: [Activo]
+Velocidad: 100Mb
+MAC: 00-50-56-C0-00-08
+ IP IPv4: 192.168.154.1
+ Mascara: 255.255.255.0
+Broadcast: None
+-----------------------------------------
+
+~~~~Adaptador: Wi-Fi~~~~
+
+Estado: [Activo]
+Velocidad: 72Mb
+MAC: A0-A4-C5-56-B0-D0
+ IP IPv4: 10.81.90.223
+ Mascara: 255.255.255.0
+Broadcast: None
+-----------------------------------------
+
+~~~~Adaptador: Conexión de red Bluetooth~~~~
+
+Estado: [Inactivo]
+Velocidad: 3Mb
+MAC: A0-A4-C5-56-B0-D4
+ IP IPv4: 169.254.169.162
+ Mascara: 255.255.0.0
+Broadcast: None
+-----------------------------------------
+
+~~~~Adaptador: Loopback Pseudo-Interface 1~~~~
+
+Estado: [Activo]
+Velocidad: 1073Mb
+ IP IPv4: 127.0.0.1
+ Mascara: 255.0.0.0
+Broadcast: None
+-----------------------------------------
+

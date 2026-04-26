@@ -4,10 +4,16 @@ from libreria_funciones.leer_archivo.ip_webs import (leer_ips_webs)
 from libreria_funciones.mostrar_configuracion.configuración_red import (mostrar_imprimir_configuracion_red)
 from libreria_funciones.comparacion_DNS.elegir_adaptador import (elegir_adaptador)
 from libreria_funciones.comparacion_DNS.comparar_dns import (comparacion_dns_archivo)
+from libreria_funciones.comparacion_DNS.cambiar_DNS_rapido import(cambiar_dns)
+from ejecutar_permisos_administrador.lanzar_como_admin import(relanzar_como_admin)
+
+relanzar_como_admin()
 
 preguntar_ruta_archivo()
 leer_webs_archivo(ruta_archivo="web.txt")
 leer_ips_webs(ruta_archivo="web.txt")
 mostrar_imprimir_configuracion_red()
-dns_server = elegir_adaptador()
-comparacion_dns_archivo(dns_server)
+dns_server, adaptador_elegido = elegir_adaptador()
+dns_server_2 = comparacion_dns_archivo(dns_server)
+cambiar_dns(dns_server, dns_server_2, adaptador_elegido)
+

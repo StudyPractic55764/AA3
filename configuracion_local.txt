@@ -62,7 +62,7 @@ Broadcast: None
 ~~~~Adaptador: Wi-Fi~~~~
 
 Estado: [Activo]
-Velocidad: 585Mb
+Velocidad: 526Mb
 MAC: A0-A4-C5-56-B0-D0
  IP IPv4: 192.168.1.83
  Mascara: 255.255.255.0

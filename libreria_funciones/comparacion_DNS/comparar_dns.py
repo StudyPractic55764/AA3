@@ -1,9 +1,5 @@
 import dns.resolver
 import time
-import statistics
-import psutil
-import subprocess
-import re
 
 def comparacion_dns_archivo(dns_server):
 

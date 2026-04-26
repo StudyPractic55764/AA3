@@ -71,8 +71,9 @@ def elegir_adaptador():
         print(f"Servidores DNS del adaptador {adaptador_elegido}:")
         for dns in dict.fromkeys(dns_servers):
             print(f"- {dns}")
-        return dns_servers
+        return dns_servers, adaptador_elegido
     
     else:
         print(f"No se han encontrado servidores DNS en el adaptador {adaptador_elegido}")
         return adaptador_elegido, []
+    

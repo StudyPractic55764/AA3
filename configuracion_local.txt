@@ -62,9 +62,9 @@ Broadcast: None
 ~~~~Adaptador: Wi-Fi~~~~
 
 Estado: [Activo]
-Velocidad: 72Mb
+Velocidad: 390Mb
 MAC: A0-A4-C5-56-B0-D0
- IP IPv4: 10.81.90.223
+ IP IPv4: 192.168.1.83
  Mascara: 255.255.255.0
 Broadcast: None
 -----------------------------------------

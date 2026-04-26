@@ -1,33 +1,35 @@
-import socket
 import psutil
 import subprocess
 import re
 
 def elegir_adaptador():
 
-    #Listamos con un submenu todos los adaptadores disponibles
+    #Listamos con un submenu todos los adaptadores activos
     
+    adaptadores_disponibles = []
+    stats = psutil.net_if_stats()
     incremental = 1
 
-    adaptadores = []
-    direccion_adaptador = psutil.net_if_addrs()
-
-    for intf, addr_list in direccion_adaptador.items():
-        print(f"{incremental}- {intf}")
-        incremental+=1
-        adaptadores.append(intf)
+    for nombre, stat in stats.items():
+        if stat.isup:
+            print(f"{incremental}- {nombre}")
+            incremental+=1
+            adaptadores_disponibles.append(nombre)
+    if not adaptadores_disponibles:
+        print("No se han encontrado adaptadores disponibles")
+        return None
 
     #Ejecutamos un bucle hasta que el usuario eliga una opción correcta dentro la lista de adaptadores
     while True:
         try:
-            eleccion=int(input(f"Elige un numero de adaptador entre 1-{len(adaptadores)}: "))
+            eleccion=int(input(f"Elige un numero de adaptador entre 1-{len(adaptadores_disponibles)}: "))
 
-            if 1 <= eleccion <= len(adaptadores):
-                adaptador_elegido = adaptadores[eleccion - 1]
+            if 1 <= eleccion <= len(adaptadores_disponibles):
+                adaptador_elegido = adaptadores_disponibles[eleccion - 1]
                 print(adaptador_elegido)
                 break
             else: 
-                print(f"Valor inválida, introduzca una numero entre 1-{len(adaptadores)}:")
+                print(f"Valor inválida, introduzca una numero entre 1-{len(adaptadores_disponibles)}:")
 
         except ValueError:
             print("Entrada invalida. Por favor, introduzca un numero entero.")
@@ -39,18 +41,25 @@ def elegir_adaptador():
 
     #Buscamos el adaptador que hemos elegido para que nos muestre su DNS creando un patron y seccion para separar del resto de adaptadores
     
-    patron = rf'Adaptador de .*{adaptador_elegido}.*?(?=\n\s*\n|\n\w|$)'
+    patron = rf'Adaptador de .*{re.escape(adaptador_elegido)}.*?\n(.*?)(?=\n\s*Adaptador de|\n\s*\n|$)'
     seccion_adaptador = re.search(patron, output, re.DOTALL | re.IGNORECASE)
     
     #Creamos una lista para almacenar si existen multiples DNS dentro el adaptador
     dns_servers = []
-
+    
     if seccion_adaptador:
         texto_seccion = seccion_adaptador.group(0)
+        lineas = texto_seccion.splitlines()
+
+        for i, linea in enumerate(lineas):
+            if "Servidores DNS" in linea or "DNS Servers" in linea:
+                ips = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', linea)
+                dns_servers.extend(ips)
 
         #Buscamos el DNS en la seccion del adaptador y especificamos el patron de texto que tiene que ecncontrar
-        patron_dns = r'(?:Servidores DNS|DNS Servers).*?:\s*(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'
+        patron_dns = r'(?i)(?:Servidores DNS|DNS Servers).*?:\s*(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'
         dns_servers = re.findall(patron_dns, texto_seccion, re.IGNORECASE)
+
 
         #Buscamos en lineas adicionales en caso de que existan más de una DNS
         if not dns_servers:
@@ -60,9 +69,10 @@ def elegir_adaptador():
     #Mostramos los resultados de la DNS encontrada
     if dns_servers:
         print(f"Servidores DNS del adaptador {adaptador_elegido}:")
-        for dns in set(dns_servers):
+        for dns in dict.fromkeys(dns_servers):
             print(f"- {dns}")
-        return adaptador_elegido, list(set(dns_servers))
+        return dns_servers
+    
     else:
         print(f"No se han encontrado servidores DNS en el adaptador {adaptador_elegido}")
         return adaptador_elegido, []

@@ -17,3 +17,4 @@ dns_server, adaptador_elegido = elegir_adaptador()
 dns_server_2 = comparacion_dns_archivo(dns_server)
 cambiar_dns(dns_server, dns_server_2, adaptador_elegido)
 
+input("\nPulsa Enter para cerrar...")

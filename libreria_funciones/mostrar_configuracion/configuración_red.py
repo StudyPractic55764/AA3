@@ -2,7 +2,8 @@ import psutil
 import socket
 
 def mostrar_imprimir_configuracion_red():
- 
+    
+    print("-"*40)
     print("LISTAR E IMPRIMIR CONFIGURACIONES DE RED")
     print("-"*40)
 
@@ -13,15 +14,18 @@ def mostrar_imprimir_configuracion_red():
     #Crear una variable para guardar una cadena con todo el informe para luego imprimirlo en pantalla y en el documento.
     informe = "---INFORME DE CONFIGURACION DE RED---\n"
 
-        
+    #Recorremos cada adaptador de red disponible
     for intf, addr_list in direccion_adaptador.items():
         informe += f"~~~~Adaptador: {intf}~~~~\n\n"
 
+        #Verificamos que el adaptador tiene informacion sobre el estado
         if intf in estados_adaptador:
             estado = estados_adaptador[intf]
+            #isup indica si el adaptador esta operativo
             informe += f"Estado: {'[Activo]' if estado.isup else '[Inactivo]'}\n"
             informe += f"Velocidad: {estado.speed}Mb\n"
 
+        #Recorremos todas las direcciones del adaptador actual
         for direccion_adaptador in addr_list:
             if direccion_adaptador.family == socket.AF_INET:
                 informe += f" IP IPv4: {direccion_adaptador.address}\n"

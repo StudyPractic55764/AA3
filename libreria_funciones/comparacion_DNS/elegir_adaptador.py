@@ -4,6 +4,10 @@ import re
 
 def elegir_adaptador():
 
+    print("-"*40)
+    print("LISTA DE ADAPTADORES DE RED DISPONIBLES")
+    print("-"*40)
+
     #Listamos con un submenu todos los adaptadores activos
     
     adaptadores_disponibles = []

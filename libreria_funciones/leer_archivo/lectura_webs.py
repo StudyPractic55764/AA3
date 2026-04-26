@@ -1,3 +1,5 @@
+#Creamos función para leer el contenido del archivo web.txt
+
 def leer_webs_archivo(ruta_archivo = "web.txt"):
     
     print("-"*40)
